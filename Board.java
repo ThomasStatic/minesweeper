@@ -5,6 +5,7 @@ public class Board {
     
     private String difficulty;
     private int nSize;
+    private int numMines;
     JFrame frame = new JFrame("Minesweeper");
 
     Board(){
@@ -16,8 +17,18 @@ public class Board {
         switch(this.difficulty){
             case "Easy":
                 this.nSize = 10;
+                this.numMines = 10;
                 break;
-            
+
+            case "Medium":
+                this.nSize = 16;
+                this.numMines = 40;
+                break;
+
+            case "Hard":
+                this.nSize = 22;
+                this.numMines = 99;
+                break;
 
             default:
                 throw new IllegalArgumentException(this.difficulty + "is not a valid difficulty");
