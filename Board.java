@@ -96,6 +96,11 @@ public class Board implements ActionListener {
                 if(this.buttonGrid[i][j] == e.getSource()){
                     String tileValue = String.valueOf(this.playingField.getTile(i, j));
                     this.buttonGrid[i][j].setText(tileValue);
+
+                    if(tileValue.equals("M")){
+                        JOptionPane.showMessageDialog(this.frame, "BOOM!", "You hit a mine! Gameover.",0);
+                        System.exit(0);
+                    }
                 }
             }
         }
