@@ -96,6 +96,10 @@ public class Game {
         return numMines;
     }
 
+    public char getTile(int i, int j){
+        return this.field[i][j];
+    }
+
     
 
     
