@@ -6,6 +6,7 @@ public class Board {
     private String difficulty;
     private int nSize;
     private int numMines;
+    private int boardSize;
     JFrame frame = new JFrame("Minesweeper");
 
     Board(){
@@ -18,16 +19,19 @@ public class Board {
             case "Easy":
                 this.nSize = 10;
                 this.numMines = 10;
+                this.boardSize = 300;
                 break;
 
             case "Medium":
                 this.nSize = 16;
                 this.numMines = 40;
+                this.boardSize = 400;
                 break;
 
             case "Hard":
                 this.nSize = 22;
                 this.numMines = 99;
+                this.boardSize = 500;
                 break;
 
             default:
@@ -61,7 +65,9 @@ public class Board {
                 buttonPanel.add(new JButton());
             }
         }
-        buttonPanel.setPreferredSize(new Dimension(400,400));
+        
+
+        buttonPanel.setPreferredSize(new Dimension(this.boardSize,this.boardSize));
         containerPanel.add(buttonPanel);
         this.frame.getContentPane().add(containerPanel);
 
