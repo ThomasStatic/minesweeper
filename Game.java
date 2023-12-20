@@ -57,7 +57,7 @@ public class Game {
 
         for(int i = 0; i <nSize; i++){
             for(int j = 0; j < nSize; j++){
-                calcTileValue(i, j);
+                this.field[i][j] = calcTileValue(i, j);
             }
         }
 
@@ -74,13 +74,13 @@ public class Game {
         
         for(int a = -1; a < 2; a++){
 
-            if((a+i) <0 || (a+i)>(nSize-1)){
+            if((a+i) <0 || (a+i)>(this.nSize-1)){
                 continue;
             }
 
             for(int b = -1; b <2; b++){
 
-                if((b+j) <0 || (b+j)>(nSize-1)){
+                if((b+j) <0 || (b+j)>(this.nSize-1)){
                     continue;
                 }
 
