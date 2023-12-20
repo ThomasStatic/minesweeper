@@ -9,9 +9,7 @@ public class Board {
     private int boardSize;
     JFrame frame = new JFrame("Minesweeper");
 
-    Board(){
-        this.difficulty = "Easy";
-    }
+    
 
     Board(String userDifficulty) throws IllegalArgumentException{
         this.difficulty = userDifficulty;
