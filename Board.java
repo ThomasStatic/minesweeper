@@ -1,13 +1,18 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
-public class Board {
+public class Board implements ActionListener {
     
     private String difficulty;
     private int nSize;
     private int numMines;
     private int boardSize;
     JFrame frame = new JFrame("Minesweeper");
+    Game playingField;
+    JButton[][] buttonGrid;
 
     
 
@@ -17,24 +22,29 @@ public class Board {
             case "Easy":
                 this.nSize = 10;
                 this.numMines = 10;
-                this.boardSize = 300;
+                this.boardSize = 400;
                 break;
 
             case "Medium":
                 this.nSize = 16;
                 this.numMines = 40;
-                this.boardSize = 400;
+                this.boardSize = 500;
                 break;
 
             case "Hard":
                 this.nSize = 22;
                 this.numMines = 99;
-                this.boardSize = 500;
+                this.boardSize = 600;
                 break;
 
             default:
                 throw new IllegalArgumentException(this.difficulty + "is not a valid difficulty");
         }
+
+        this.playingField = new Game(this.numMines, this.nSize);
+        playingField.generateField();
+        this.buttonGrid = new JButton[this.nSize][this.nSize];
+
     }
 
     public void createWindow(){
@@ -58,14 +68,21 @@ public class Board {
         JPanel buttonPanel = new JPanel();
         JPanel containerPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(this.nSize, this.nSize));
-        for(int i = 0; i < nSize; i++){
-            for(int j = 0; j < nSize; j++){
-                buttonPanel.add(new JButton());
-            }
-        }
+         for(int i = 0; i < nSize; i++){
+             for(int j = 0; j < nSize; j++){
+                
+        //         //String tileValue = String.valueOf(this.playingField.getTile(i, j));
+        //         //System.out.println(tileValue);
+                this.buttonGrid[i][j] = new JButton("?");
+                this.buttonGrid[i][j].setSize(new Dimension(40,40));
+                this.buttonGrid[i][j].addActionListener(this);
+        //         tempButton.setSize(new Dimension(25,25));
+                 buttonPanel.add(buttonGrid[i][j]);
+             }
+         }
         
 
-        buttonPanel.setPreferredSize(new Dimension(this.boardSize,this.boardSize));
+        
         containerPanel.add(buttonPanel);
         this.frame.getContentPane().add(containerPanel);
 
@@ -73,4 +90,19 @@ public class Board {
     }
 
 
+    public void actionPerformed(ActionEvent e){
+        for(int i = 0; i < this.nSize; i++){
+            for(int j = 0; j < this.nSize; j++){
+                if(this.buttonGrid[i][j] == e.getSource()){
+                    String tileValue = String.valueOf(this.playingField.getTile(i, j));
+                    this.buttonGrid[i][j].setText(tileValue);
+                }
+            }
+        }
+
+    
+    }
+
 }
+
+
